@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-9">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Game Name</th>
+                <th scope="col">Player One</th>
+                <th scope="col">Player Two</th>
+                <th scope="col">Winner</th>
+    
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let game of filteredGames"
+              (click)="selectGame(game)"
+              [class.selected]="selectedGame === game">
+                <th scope="row">{{game.Id}}</th>
+                <td>{{game.Game_Name}}</td>
+                <td>{{game.Player_One}}</td>
+                <td>{{game.Player_Two}}</td>
+                <td>{{game.Winner ? "Player One" : "Player Two"}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-3">
+      <app-game-edit [game]="selectedGame"></app-game-edit>
+    </div>
+</div>
