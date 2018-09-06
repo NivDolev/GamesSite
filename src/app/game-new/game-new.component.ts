@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { GameService } from './../services/game.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,14 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameNewComponent implements OnInit {
 
-  constructor() { }
-
-  gameName = '';
-  playerOne = '';
-  playerTwo = '';
-  winner = '';
+  constructor(
+    private gameService: GameService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
+  onSubmit(form: any) {
+    console.log(form.value);
+    this.gameService.addNewGame(form.value).subscribe(data => {
+      console.log(data);
+      this.router.navigate(['/games']);
+    });
+  }
 }

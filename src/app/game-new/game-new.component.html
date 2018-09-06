@@ -1,3 +1,30 @@
-<p>
-  game-new works!
-</p>
+<div class="col-3">
+  <div>
+    <h2>Game details:</h2>
+  </div>
+  <form #newGame="ngForm" (ngSubmit)="onSubmit(newGame)">
+    <div class="form-group">
+      <label for="Game_Name">Game Name:</label>
+      <input type="text" class="form-control" name="Game_Name" id="gameName" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="Player_One">Player One:</label>
+      <input type="text" class="form-control" name="Player_One" id="playerOne" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="Player_Two">Player Two:</label>
+      <input type="text" class="form-control" name="Player_Two" id="playerTwo" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="Winner">Winner:</label>
+      <select class="custom-select" name="Winner" id="winner" ngModel required>
+        <option value="">Choose Player</option>
+        <option value="0">Player One</option>
+        <option value="1">Player Two</option>
+      </select>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-success" [class.disabled]="newGame.invalid">Creat Game</button>
+    </div>
+  </form>
+</div>
