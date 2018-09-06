@@ -1,7 +1,7 @@
 import { GameService } from './../services/game.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Game } from '../Model/game.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -11,8 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GameEditComponent implements OnInit {
   game: Game;
-
-  constructor(private gameService: GameService, private route: ActivatedRoute) { }
+  gameId: number;
+  constructor(
+    private gameService: GameService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -20,10 +24,20 @@ export class GameEditComponent implements OnInit {
   }
 
   onUpdateGame(): void {
-    this.gameService.updateGame(this.game).subscribe(data => console.log(data));
+    this.gameService.updateGame(this.game).subscribe(data => {
+      console.log(data);
+      this.navigateBack();
+    });
   }
 
   onDeleteGame(): void {
-    this.gameService.deleteGame(this.game.Id).subscribe(data => console.log(data));
+    this.gameService.deleteGame(this.game.Id).subscribe(data => {
+      console.log(data);
+      this.navigateBack();
+    });
+  }
+
+  navigateBack(): void {
+    this.router.navigate(['games']);
   }
 }

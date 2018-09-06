@@ -9,6 +9,11 @@ export class GameNewComponent implements OnInit {
 
   constructor() { }
 
+  gameName = '';
+  playerOne = '';
+  playerTwo = '';
+  winner = '';
+
   ngOnInit() {
   }
 

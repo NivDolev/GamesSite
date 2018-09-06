@@ -1,39 +1,35 @@
 <div class="col-3">
-  <div>
-    <h2>Game Details:</h2>
-  </div>
+  <h2>Game Details:</h2>
   <div *ngIf="game">
     <form>
       <div class="form-group">
-        <label for="inputId">Game Id:</label>
-        <input type="number" class="form-control" name="gameId" #gameId
-        id="inputId" [value]="game.Id" ([gameId])="gameId"
-        disabled>
+        <label for="gameId">Game Id:</label>
+        <input type="number" class="form-control" name="gameId" #gameId [(ngModel)]="game.Id" 
+        id="inputId" [value]="game.Id" disabled>
       </div>
       <div class="form-group">
-        <label for="inputGameName">Game Name:</label>
-        <input type="text" class="form-control" name="gameName" #gameName
+        <label for="gameName">Game Name:</label>
+        <input type="text" class="form-control" name="gameName" #gameName [(ngModel)]="game.Game_Name"
         id="inputGameName" [value]="game.Game_Name">
       </div>
       <div class="form-group">
-        <label for="inputPlayerOne">Player One:</label>
-        <input type="text" class="form-control" name="playerOne" #playerOne
+        <label for="playerOne">Player One:</label>
+        <input type="text" class="form-control" name="playerOne" #playerOne [(ngModel)]="game.Player_One"
         id="inputPlayerOne" [value]="game.Player_One">
       </div>
       <div class="form-group">
-        <label for="inputPlayerTwo">Player Two:</label>
-        <input type="text" class="form-control" name="playerTwo" #playerTwo
+        <label for="playerTwo">Player Two:</label>
+        <input type="text" class="form-control" name="playerTwo" #playerTwo [(ngModel)]="game.Player_Two"
         id="inputPlayerTwo" [value]="game.Player_Two">
       </div>
       <div class="form-group">
-        <label for="winner">Winner:</label>
-        <input type="text" class="form-control" name="gameWinner" #gameWinner
+        <label for="gameWinner">Winner:</label>
+        <input type="text" class="form-control" name="gameWinner" #gameWinner [(ngModel)]="game.Winner"
         id="winner" [value]="game.Winner ? 'Player One' : 'Player Two'">
       </div>
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary" (click)="onUpdateGame(game)"
-          [class.disabled]="game.Id == 0">Update</button>
+          <button type="submit" class="btn btn-primary" (click)="onUpdateGame(game)" [class.disabled]="game.Id == 0">Update</button>
         </div>
         <div class="col">
           <button type="button" class="btn btn-danger float-right" (click)="onDeleteGame(game.Id)">Delete</button>
@@ -43,5 +39,5 @@
   </div>
   <div *ngIf="!game">
     <h2>Game Not Found</h2>
-  </div>  
+  </div>
 </div>
