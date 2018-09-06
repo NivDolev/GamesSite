@@ -1,7 +1,8 @@
-import { GameService } from './services/game.service';
 import { AppRoutingModule } from './app-router.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { GamesListComponent } from './games-list/games-list.component';
@@ -23,7 +24,8 @@ import { GameNewComponent } from './game-new/game-new.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

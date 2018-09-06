@@ -1,6 +1,8 @@
 import { GameService } from './../services/game.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Game } from '../Model/game.model';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-game-edit',
@@ -8,17 +10,16 @@ import { Game } from '../Model/game.model';
   styleUrls: ['./game-edit.component.css']
 })
 export class GameEditComponent implements OnInit {
-
-  @Input()
   game: Game;
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.gameService.getGameById(id).subscribe((game: Game) => this.game = game);
   }
 
   onUpdateGame(): void {
-    console.log(this.game);
     this.gameService.updateGame(this.game).subscribe(data => console.log(data));
   }
 

@@ -7,10 +7,8 @@ import { GamesListComponent } from './games-list/games-list.component';
 
 const routes: Routes = [
     { path: 'search', component: GamesSearchComponent },
-    { path: 'games', children: [
-        { path: '', component: GamesListComponent },
-        { path: 'edit/:id', component: GameEditComponent },
-    ] },
+    { path: 'games', component: GamesListComponent },
+    { path: 'games/:id', component: GameEditComponent },
     { path: '', redirectTo: 'games', pathMatch: 'full' },
     { path: '**', redirectTo: 'games', pathMatch: 'full' }
 ];

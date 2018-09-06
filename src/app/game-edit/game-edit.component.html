@@ -1,32 +1,47 @@
-<div *ngIf="game">
-  <form>
-    <div class="form-group">
-      <label for="inputId">Game Id:</label>
-      <input type="number" class="form-control" id="inputId" aria-describedby="emailHelp" [value]="game.Id" disabled>
-    </div>
-    <div class="form-group">
-      <label for="inputGameName">Game Name:</label>
-      <input type="text" class="form-control" id="inputGameName" [value]="game.Game_Name">
-    </div>
-    <div class="form-group">
-      <label for="inputPlayerOne">Player One:</label>
-      <input type="text" class="form-control" id="inputPlayerOne" [value]="game.Player_One">
-    </div>
-    <div class="form-group">
-      <label for="inputPlayerTwo">Player Two:</label>
-      <input type="text" class="form-control" id="inputPlayerTwo" [value]="game.Player_Two">
-    </div>
-    <div class="form-group">
-      <label for="winner">Winner:</label>
-      <input type="text" class="form-control" id="winner" [value]="game.Winner ? 'Player One' : 'Player Two'">
-    </div>
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-primary" (click)="onUpdateGame(game)">Update</button>
+<div class="col-3">
+  <div>
+    <h2>Game Details:</h2>
+  </div>
+  <div *ngIf="game">
+    <form>
+      <div class="form-group">
+        <label for="inputId">Game Id:</label>
+        <input type="number" class="form-control" name="gameId" #gameId
+        id="inputId" [value]="game.Id" ([gameId])="gameId"
+        disabled>
       </div>
-      <div class="col">
-        <button type="button" class="btn btn-danger float-right" (click)="onDeleteGame(game.Id)">Delete</button>
+      <div class="form-group">
+        <label for="inputGameName">Game Name:</label>
+        <input type="text" class="form-control" name="gameName" #gameName
+        id="inputGameName" [value]="game.Game_Name">
       </div>
-    </div>
-  </form>
+      <div class="form-group">
+        <label for="inputPlayerOne">Player One:</label>
+        <input type="text" class="form-control" name="playerOne" #playerOne
+        id="inputPlayerOne" [value]="game.Player_One">
+      </div>
+      <div class="form-group">
+        <label for="inputPlayerTwo">Player Two:</label>
+        <input type="text" class="form-control" name="playerTwo" #playerTwo
+        id="inputPlayerTwo" [value]="game.Player_Two">
+      </div>
+      <div class="form-group">
+        <label for="winner">Winner:</label>
+        <input type="text" class="form-control" name="gameWinner" #gameWinner
+        id="winner" [value]="game.Winner ? 'Player One' : 'Player Two'">
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary" (click)="onUpdateGame(game)"
+          [class.disabled]="game.Id == 0">Update</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-danger float-right" (click)="onDeleteGame(game.Id)">Delete</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="!game">
+    <h2>Game Not Found</h2>
+  </div>  
 </div>

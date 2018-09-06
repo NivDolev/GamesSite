@@ -3,5 +3,5 @@ export class Game {
     public Game_Name: string;
     public Player_One: string;
     public Player_Two: string;
-    public Winner: number;
+    public Winner?: number;
 }

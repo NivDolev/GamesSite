@@ -1,5 +1,6 @@
 import { GameService } from './../services/game.service';
 import { Component, OnInit, Output } from '@angular/core';
+import { Game } from '../Model/game.model';
 
 @Component({
   selector: 'app-games-list',
@@ -8,8 +9,7 @@ import { Component, OnInit, Output } from '@angular/core';
 })
 export class GamesListComponent implements OnInit {
 
-  games = [];
-  filteredGames = [];
+  games: Game[];
 
   @Output()
   selectedGame: any;
@@ -19,7 +19,6 @@ export class GamesListComponent implements OnInit {
   ngOnInit() {
     this.gameService.getAllGames().subscribe(games => {
       this.games = games.sort();
-      this.filteredGames = this.games;
       this.onSort();
     });
   }
@@ -29,7 +28,7 @@ export class GamesListComponent implements OnInit {
   }
 
   onSort() {
-    this.filteredGames = this.filteredGames.sort(function (a, b) {
+    this.games = this.games.sort(function (a, b) {
       if (a['Id'] < b['Id']) {
         return -1;
       } else if (b['Id'] < a['Id']) {
