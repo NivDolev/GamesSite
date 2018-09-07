@@ -31,15 +31,15 @@ export class GameService {
     return this.http.get<Game[]>(siteUrl + name);
   }
 
-  getGamesBySearchParams(id: number, gameName: string, playerOne: string, playerTwo: string, winner: number): Observable<Game[]> {
-    let searchParams = '';
-    if (id != null) {searchParams += `id=${id}`; }
-    if (playerOne != null) {searchParams += `playerOne=${playerOne}`; }
-    if (playerTwo != null) {searchParams += `playerTwo=${playerTwo}`; }
-    if (gameName != null) {searchParams += `gameName=${gameName}`; }
-    if (winner != null) {searchParams += `winner=${winner}`; }
-
-    return this.http.get<Game[]>(`${siteUrl}search?${searchParams}`);
+  getGamesBySearchParams(id?: number, gameName?: string, playerOne?: string,
+                         playerTwo?: string, winner?: string): Observable<Game[]> {
+    let searchParams = `id=${id}`;
+    if (playerOne != null && playerOne !== '') {searchParams += `&playerOne=${playerOne}`; }
+    if (playerTwo != null && playerTwo !== '') {searchParams += `&playerTwo=${playerTwo}`; }
+    if (gameName != null && gameName !== '') {searchParams += `&gameName=${gameName}`; }
+    if (winner != null && winner !== '') {searchParams += `&winner=${+winner}`; }
+    console.log(`${siteUrl}seach?${searchParams}`);
+    return this.http.get<Game[]>(`${siteUrl}seach?${searchParams}`);
   }
 
   addNewGame(game): Observable<Game> {
